@@ -5,19 +5,26 @@
       <router-link to="/about">About</router-link> |
       <router-link to="/counter">Counter</router-link>
     </nav>
-    <router-view />
+    <router-view
+      v-bind:compName.sync="company"
+      v-on:changeComp="updateComp($event)"
+    />
     <app-footer v-bind:compName="company"></app-footer>
   </div>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      company: "AnitaBlackHawk Inc.",
-    };
-  },
-};
+import Vue from "vue";
+import Component from "vue-class-component";
+
+@Component
+export default class InputField extends Vue {
+  company = "AnitaBlackHawk Inc.";
+
+  updateComp(updatedTitle) {
+    this.company = updatedTitle;
+  }
+}
 </script>
 
 <style>
