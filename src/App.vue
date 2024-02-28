@@ -5,14 +5,8 @@
       <router-link to="/about">About</router-link> |
       <router-link to="/counter">Counter</router-link>
     </nav>
-    <router-view
-      v-bind:compName="company"
-      v-on:changeComp="updateComp($event)"
-    />
-    <app-footer
-      v-bind:compName="company"
-      v-on:changeComp="updateComp($event)"
-    ></app-footer>
+    <router-view @change-comp-name="updateCompanyName($event)" />
+    <app-footer :companyName="compName"></app-footer>
   </div>
 </template>
 
@@ -22,10 +16,10 @@ import Component from "vue-class-component";
 
 @Component
 export default class RootComponent extends Vue {
-  company = "AnitaBlackHawk Inc.";
+  compName = "AnitaBlackHawk Inc.";
 
-  updateComp(updatedTitle) {
-    this.company = updatedTitle;
+  updateCompanyName(updatedTitle) {
+    this.compName = updatedTitle;
   }
 }
 </script>

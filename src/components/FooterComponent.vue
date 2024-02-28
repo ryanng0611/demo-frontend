@@ -10,14 +10,14 @@ import Component from "vue-class-component";
 
 const MessageProp = Vue.extend({
   props: {
-    compName: String,
+    companyName: String,
   },
 });
 
 @Component
 export default class FooterComponent extends MessageProp {
   get footerContent() {
-    return new Date().getFullYear() + " " + this.compName;
+    return new Date().getFullYear() + " " + this.companyName;
   }
 }
 </script>

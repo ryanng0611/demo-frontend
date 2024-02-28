@@ -2,7 +2,7 @@
   <div>
     <input v-model="input" />
     <!-- <p v-show="showTxt">{{ augInput }}</p> -->
-    <button v-on:click="changeComp">Change name</button>
+    <button @click="changeCompanyNameEvent">Change name</button>
     <!-- <p>{{ input }}</p> -->
   </div>
 </template>
@@ -37,8 +37,8 @@ export default class InputField extends MessageProp {
     return this.input + (this.showTxt ? ", funny times" : "");
   }
 
-  changeComp() {
-    this.$emit("changeComp", this.input);
+  changeCompanyNameEvent() {
+    this.$emit("event-trigger", this.input);
   }
 }
 </script>
