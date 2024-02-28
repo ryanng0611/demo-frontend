@@ -10,6 +10,7 @@
 <script>
 import Vue from "vue";
 import Component from "vue-class-component";
+import { eventBus } from "../main";
 
 const MessageProp = Vue.extend({
   props: {
@@ -38,6 +39,7 @@ export default class InputField extends MessageProp {
   }
 
   changeCompanyNameEvent() {
+    eventBus.$emit("bus-event-trigger", this.input);
     this.$emit("event-trigger", this.input);
   }
 }
