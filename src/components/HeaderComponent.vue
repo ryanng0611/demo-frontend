@@ -1,7 +1,10 @@
 <template>
-  <footer class="header">
-    <p>&copy; {{ headerContent }}</p>
-  </footer>
+  <header class="header">
+    <p>{{ headerContent }}</p>
+    <div>
+      <slot></slot>
+    </div>
+  </header>
 </template>
 
 <script>
