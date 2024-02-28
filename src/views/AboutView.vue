@@ -1,20 +1,12 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
-    <InputField v-on:changeComp="updateComp($event)" />
-    <h2>{{ getCompName }}</h2>
+    <h3>Your input:</h3>
+    <InputField @event-trigger="companyNameEventPropagator($event)" />
+    <br />
   </div>
 </template>
 
 <script>
-// import InputField from "../components/InputField.vue";
-
-// export default {
-//   components: {
-//     InputField,
-//   },
-// };
-
 import Vue from "vue";
 import Component from "vue-class-component";
 import InputField from "../components/InputField.vue";
@@ -23,21 +15,11 @@ import InputField from "../components/InputField.vue";
   components: {
     InputField,
   },
-  props: {
-    compName: String,
-  },
 })
 export default class AboutView extends Vue {
-  compNameNested = "";
-
-  get getCompName() {
-    return this.compNameNested;
-  }
-
-  updateComp(updatedTitle) {
-    this.compNameNested = updatedTitle;
+  companyNameEventPropagator(newName) {
+    // Emit event upwards to App.vue
+    this.$emit("change-comp-name", newName);
   }
 }
-
-// console.log(this.compName);
 </script>
