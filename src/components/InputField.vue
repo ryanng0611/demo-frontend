@@ -2,7 +2,8 @@
   <div>
     <input v-model="input" />
     <!-- <p v-show="showTxt">{{ augInput }}</p> -->
-    <button v-on:click="changeTitle">Change name</button>
+    <button v-on:click="changeComp">Change name</button>
+    <!-- <p>{{ input }}</p> -->
   </div>
 </template>
 
@@ -18,7 +19,7 @@ const MessageProp = Vue.extend({
 
 @Component
 export default class InputField extends MessageProp {
-  input = this.compName;
+  input = "";
 
   get showTxt() {
     return this.input.length > 0;
@@ -36,8 +37,8 @@ export default class InputField extends MessageProp {
     return this.input + (this.showTxt ? ", funny times" : "");
   }
 
-  changeTitle() {
-    this.$emit("changeTitle", this.input);
+  changeComp() {
+    this.$emit("changeComp", this.input);
   }
 }
 </script>

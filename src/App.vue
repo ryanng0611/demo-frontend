@@ -6,10 +6,13 @@
       <router-link to="/counter">Counter</router-link>
     </nav>
     <router-view
-      v-bind:compName.sync="company"
+      v-bind:compName="company"
       v-on:changeComp="updateComp($event)"
     />
-    <app-footer v-bind:compName="company"></app-footer>
+    <app-footer
+      v-bind:compName="company"
+      v-on:changeComp="updateComp($event)"
+    ></app-footer>
   </div>
 </template>
 
@@ -18,7 +21,7 @@ import Vue from "vue";
 import Component from "vue-class-component";
 
 @Component
-export default class InputField extends Vue {
+export default class RootComponent extends Vue {
   company = "AnitaBlackHawk Inc.";
 
   updateComp(updatedTitle) {
