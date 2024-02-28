@@ -6,6 +6,7 @@
       <router-link to="/counter">Counter</router-link>
     </nav>
     <router-view />
+    <app-footer></app-footer>
   </div>
 </template>
 
