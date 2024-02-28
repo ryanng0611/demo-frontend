@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <p>&copy; {{ year }} AnitaBlackHawk Inc.</p>
+    <p>&copy; {{ footerContent }}</p>
   </footer>
 </template>
 
@@ -8,10 +8,16 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 
+const MessageProp = Vue.extend({
+  props: {
+    compName: String,
+  },
+});
+
 @Component
-export default class FooterComponent extends Vue {
-  get year() {
-    return new Date().getFullYear();
+export default class FooterComponent extends MessageProp {
+  get footerContent() {
+    return new Date().getFullYear() + " " + this.compName;
   }
 }
 </script>

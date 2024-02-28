@@ -6,9 +6,19 @@
       <router-link to="/counter">Counter</router-link>
     </nav>
     <router-view />
-    <app-footer></app-footer>
+    <app-footer v-bind:compName="company"></app-footer>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      company: "AnitaBlackHawk Inc.",
+    };
+  },
+};
+</script>
 
 <style>
 #app {
