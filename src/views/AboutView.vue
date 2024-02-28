@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <h3>Your input:</h3>
-    <InputField @event-trigger="companyNameEventPropagator($event)" />
+    <input-field @event-trigger="companyNameEventPropagator($event)" />
     <br />
   </div>
 </template>
@@ -13,7 +13,7 @@ import InputField from "../components/InputField.vue";
 
 @Component({
   components: {
-    InputField,
+    "input-field": InputField,
   },
 })
 export default class AboutView extends Vue {
