@@ -7,7 +7,7 @@
 <script>
 import Vue from "vue";
 import Component from "vue-class-component";
-import UserForm from "@/components/UserForm.vue";
+import UserForm from "@/components/UserForm";
 
 @Component({
   components: {
