@@ -1,5 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
+import Buefy from "buefy";
+import "buefy/dist/buefy.css";
 import router from "./router";
 import store from "./store";
 import FooterComponent from "./components/FooterComponent.vue";
@@ -9,10 +11,10 @@ import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
 import HeaderComponent from "./components/HeaderComponent.vue";
 
 library.add(faUserSecret);
-
-Vue.component("font-awesome-icon", FontAwesomeIcon);
-
 Vue.config.productionTip = false;
+
+Vue.use(Buefy);
+Vue.component("font-awesome-icon", FontAwesomeIcon);
 Vue.component("app-footer", FooterComponent);
 Vue.component("app-header", HeaderComponent);
 
