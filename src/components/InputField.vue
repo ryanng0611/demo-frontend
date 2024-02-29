@@ -1,9 +1,8 @@
 <template>
   <div>
     <input v-model="input" />
-    <!-- <p v-show="showTxt">{{ augInput }}</p> -->
     <button @click="changeCompanyNameEvent">Change name</button>
-    <!-- <p>{{ input }}</p> -->
+    <br />
   </div>
 </template>
 
@@ -12,31 +11,9 @@ import Vue from "vue";
 import Component from "vue-class-component";
 import { eventBus } from "../main";
 
-const MessageProp = Vue.extend({
-  props: {
-    compName: String,
-  },
-});
-
 @Component
-export default class InputField extends MessageProp {
+export default class InputField extends Vue {
   input = "";
-
-  get showTxt() {
-    return this.input.length > 0;
-  }
-
-  get getInput() {
-    return this.input;
-  }
-
-  get getCompName() {
-    return this.compName;
-  }
-
-  get augInput() {
-    return this.input + (this.showTxt ? ", funny times" : "");
-  }
 
   changeCompanyNameEvent() {
     eventBus.$emit("bus-event-trigger", this.input);

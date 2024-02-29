@@ -12,14 +12,12 @@ import Vue from "vue";
 import Component from "vue-class-component";
 import { eventBus } from "../main";
 
-const MessageProp = Vue.extend({
+@Component({
   props: {
     companyName: String,
   },
-});
-
-@Component
-export default class HeaderComponent extends MessageProp {
+})
+export default class HeaderComponent extends Vue {
   get headerContent() {
     return "A website by " + this.companyName;
   }

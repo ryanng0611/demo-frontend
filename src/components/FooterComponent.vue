@@ -8,14 +8,12 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 
-const MessageProp = Vue.extend({
+@Component({
   props: {
     companyName: String,
   },
-});
-
-@Component
-export default class FooterComponent extends MessageProp {
+})
+export default class FooterComponent extends Vue {
   get footerContent() {
     return new Date().getFullYear() + " " + this.companyName;
   }

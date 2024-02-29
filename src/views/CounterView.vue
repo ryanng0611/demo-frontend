@@ -1,15 +1,20 @@
 <template>
   <div class="counter">
-    <SimpleCounter />
+    <br />
+    <simple-counter />
+    <br />
   </div>
 </template>
 
 <script>
-import SimpleCounter from "@/components/SimpleCounter.vue";
+import Vue from "vue";
+import Component from "vue-class-component";
+import SimpleCounter from "../components/SimpleCounter.vue";
 
-export default {
+@Component({
   components: {
-    SimpleCounter,
+    "simple-counter": SimpleCounter,
   },
-};
+})
+export default class CounterView extends Vue {}
 </script>
