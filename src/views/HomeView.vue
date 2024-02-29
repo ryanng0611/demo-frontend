@@ -1,18 +1,19 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Yeet yeet beat my meat" />
+    <hello-world msg="Yeet yeet beat my meat" />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import Vue from "vue";
+import Component from "vue-class-component";
+import HelloWorld from "../components/HelloWorld.vue";
 
-export default {
-  name: "HomeView",
+@Component({
   components: {
-    HelloWorld,
+    "hello-world": HelloWorld,
   },
-};
+})
+export default class HomeView extends Vue {}
 </script>
