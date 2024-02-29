@@ -1,9 +1,8 @@
 <template>
   <div>
     <input v-model="input" />
-    <!-- <p v-show="showTxt">{{ augInput }}</p> -->
     <button @click="changeCompanyNameEvent">Change name</button>
-    <!-- <p>{{ input }}</p> -->
+    <br />
   </div>
 </template>
 
@@ -21,22 +20,6 @@ const MessageProp = Vue.extend({
 @Component
 export default class InputField extends MessageProp {
   input = "";
-
-  get showTxt() {
-    return this.input.length > 0;
-  }
-
-  get getInput() {
-    return this.input;
-  }
-
-  get getCompName() {
-    return this.compName;
-  }
-
-  get augInput() {
-    return this.input + (this.showTxt ? ", funny times" : "");
-  }
 
   changeCompanyNameEvent() {
     eventBus.$emit("bus-event-trigger", this.input);
