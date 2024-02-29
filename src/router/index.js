@@ -26,6 +26,11 @@ const routes = [
     name: "counter",
     component: () => import("../views/CounterView.vue"),
   },
+  {
+    path: "/register",
+    name: "register",
+    component: () => import("../views/UserFormView.vue"),
+  },
 ];
 
 const router = new VueRouter({
