@@ -11,14 +11,8 @@ import Vue from "vue";
 import Component from "vue-class-component";
 import { eventBus } from "../main";
 
-const MessageProp = Vue.extend({
-  props: {
-    compName: String,
-  },
-});
-
 @Component
-export default class InputField extends MessageProp {
+export default class InputField extends Vue {
   input = "";
 
   changeCompanyNameEvent() {
