@@ -90,7 +90,7 @@ export default class UserList extends Vue {
     }
   }
 
-  async removeRecords() {
+  async deleteAccounts() {
     try {
       const baseURL = "http://localhost:3000";
       // const data = { username: this.username, password: this.password }; // Prepare JSON data object
@@ -100,12 +100,61 @@ export default class UserList extends Vue {
         `${baseURL}/users/deleteUsers/${userIds}`
       );
       this.responseMessage = response.data.message; // Extract response message
-      this.checkedRows = [];
     } catch (error) {
       console.error(error);
       this.responseMessage = "Error sending data.";
+    } finally {
+      this.fetchData();
+      this.checkedRows = [];
     }
-    this.fetchData();
+  }
+
+  async removeRecords() {
+    if (this.checkedRows.length <= 0) {
+      this.alertCustomError();
+    } else {
+      this.confirmCustomDelete();
+    }
+  }
+
+  alertCustomError() {
+    this.$buefy.dialog.alert({
+      title: "Warning",
+      message:
+        "I don't feel so good Mr. Stark (You just didn't select anything)",
+      type: "is-danger",
+      hasIcon: true,
+      icon: "times-circle",
+      iconPack: "fa",
+      ariaRole: "alertdialog",
+      ariaModal: true,
+    });
+  }
+
+  confirmCustomDelete() {
+    this.$buefy.dialog.confirm({
+      title: "Deleting account",
+      message:
+        "Are you sure you want to <b>delete</b> your account? This action cannot be undone.",
+      confirmText: "Delete Account",
+      type: "is-danger",
+      hasIcon: true,
+      closeOnConfirm: true,
+      onConfirm: async () => {
+        try {
+          // Call your API to delete the account
+          await this.deleteAccounts(); // Replace with your actual API call
+          this.$buefy.toast.open("Account deleted!");
+        } catch (error) {
+          // Handle any errors that occur during deletion
+          console.error(error);
+          this.$buefy.toast.open({
+            message: "Error deleting account!",
+            type: "is-danger",
+          }); // Example error toast
+        }
+      },
+    });
   }
 }
 </script>
@@ -129,12 +178,5 @@ p {
   /* display: inline-block; */
   float: right;
   text-align: right;
-}
-
-th {
-  /* Your desired CSS styles for all headers */
-  background-color: #ea0a0a;
-  font-weight: bold;
-  padding: 10px;
 }
 </style>

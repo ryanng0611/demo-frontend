@@ -59,6 +59,8 @@ export default class UserForm extends Vue {
       this.responseMessage = "Error sending data.";
     } finally {
       this.loading = false;
+      this.username = "";
+      this.password = "";
     }
   }
 
