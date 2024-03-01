@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="user-form">
     <user-form></user-form>
   </div>
 </template>
@@ -16,3 +16,9 @@ import UserForm from "@/components/UserForm";
 })
 export default class UserFormView extends Vue {}
 </script>
+
+<style scoped>
+#user-form {
+  text-align: center;
+}
+</style>
