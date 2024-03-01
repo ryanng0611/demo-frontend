@@ -1,13 +1,31 @@
 <template>
   <div id="user-list">
+    <b-button
+      label="Remove"
+      class="remove-button"
+      type="submit is-danger"
+      icon-left="close"
+      @click="removeRecords"
+    />
+    <br />
     <b-table
-      v-if="userData"
-      :data="userData"
+      :data="isEmpty ? [] : userData"
       :columns="columns"
       :striped="isStriped"
       :sort-multiple="multiColumnSortingEnabled"
-    ></b-table>
-    <p v-else>Loading data...</p>
+      checkable
+      checkbox-position="right"
+      :checked-rows.sync="checkedRows"
+      ><template #empty>
+        <div class="has-text-centered">No records</div>
+      </template>
+      <template #bottom-left>
+        <b>Total checked</b>: {{ checkedRows.length }}
+      </template>
+    </b-table>
+    <hr />
+    <b>Items to delete:</b>
+    <pre>{{ checkedRows }}</pre>
   </div>
 </template>
 
@@ -24,6 +42,7 @@ export default class UserList extends Vue {
   isStriped = true;
   multiColumnSortingEnabled = true;
   userData = [];
+  checkedRows = [];
   defaultText = "Hehe";
 
   columns = [
@@ -51,6 +70,14 @@ export default class UserList extends Vue {
     this.fetchData();
   }
 
+  update() {
+    this.fetchData();
+  }
+
+  get isEmpty() {
+    return this.userData.isEmpty;
+  }
+
   async fetchData() {
     try {
       const baseURL = "http://localhost:3000";
@@ -61,6 +88,24 @@ export default class UserList extends Vue {
     } catch (error) {
       console.error(error);
     }
+  }
+
+  async removeRecords() {
+    try {
+      const baseURL = "http://localhost:3000";
+      // const data = { username: this.username, password: this.password }; // Prepare JSON data object
+      // console.log(data.username + data.password);
+      const userIds = this.checkedRows.map((user) => user.userId).join(",");
+      const response = await axios.post(
+        `${baseURL}/users/deleteUsers/${userIds}`
+      );
+      this.responseMessage = response.data.message; // Extract response message
+      this.checkedRows = [];
+    } catch (error) {
+      console.error(error);
+      this.responseMessage = "Error sending data.";
+    }
+    this.fetchData();
   }
 }
 </script>
@@ -78,6 +123,12 @@ export default class UserList extends Vue {
 
 p {
   text-align: center;
+}
+
+.remove-button {
+  /* display: inline-block; */
+  float: right;
+  text-align: right;
 }
 
 th {
