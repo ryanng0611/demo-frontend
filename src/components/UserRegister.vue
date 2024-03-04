@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>User Register Form</h1>
+    <h1>User Registration Form</h1>
     <hr />
     <form id="user-registration-form">
       <b-field grouped label="Username" label-position="on-border">
@@ -38,7 +38,7 @@ import Component from "vue-class-component";
 import axios from "axios";
 
 @Component()
-export default class UserForm extends Vue {
+export default class UserRegister extends Vue {
   username = "";
   password = "";
   loading = false;
