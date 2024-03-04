@@ -1,12 +1,20 @@
 <template>
   <div id="user-list">
-    <b-button
-      label="Remove"
-      class="remove-button"
-      type="submit is-danger"
-      icon-left="close"
-      @click="removeRecords"
-    />
+    <div class="button-div">
+      <b-button
+        label="Edit"
+        class="update-button"
+        type="submit is-info"
+        icon-left="pen"
+        @click="updateRecords"
+      /><b-button
+        label="Remove"
+        class="remove-button"
+        type="submit is-danger"
+        icon-left="close"
+        @click="removeRecords"
+      />
+    </div>
     <br />
     <b-table
       :data="isEmpty ? [] : userData"
@@ -24,7 +32,7 @@
       </template>
     </b-table>
     <hr />
-    <b>Items to delete:</b>
+    <b>Selected items:</b>
     <pre>{{ checkedRows }}</pre>
   </div>
 </template>
@@ -109,6 +117,14 @@ export default class UserList extends Vue {
     }
   }
 
+  async updateRecords() {
+    if (this.checkedRows.length <= 0) {
+      this.alertCustomError();
+    } else {
+      this.promptNotClosedWithLoading();
+    }
+  }
+
   async removeRecords() {
     if (this.checkedRows.length <= 0) {
       this.alertCustomError();
@@ -170,13 +186,23 @@ export default class UserList extends Vue {
   padding: 20px auto;
 }
 
+.button-div {
+  display: flex; /* Use flexbox for layout control */
+  justify-content: flex-end; /* Align buttons to the right */
+  gap: 10px; /* Add spacing between buttons (adjust as needed) */
+}
+
 p {
   text-align: center;
 }
 
-.remove-button {
-  /* display: inline-block; */
+/* .remove-button {
   float: right;
   text-align: right;
+}
+*/
+.update-button {
+  padding-left: 30px;
+  padding-right: 30px;
 }
 </style>
