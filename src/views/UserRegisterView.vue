@@ -7,11 +7,11 @@
 <script>
 import Vue from "vue";
 import Component from "vue-class-component";
-import UserForm from "@/components/UserForm";
+import UserRegister from "@/components/UserRegister";
 
 @Component({
   components: {
-    "user-form": UserForm,
+    "user-form": UserRegister,
   },
 })
 export default class UserFormView extends Vue {}
